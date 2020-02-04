@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<script>
+			// Developed by Luis Urcia, 2/4/2020
+			// This function allows to enter two parameters, one array and the other one an integer and then make a calculation
+		function funCalculateChallenge() {
+		
+		try {
+			var arrArrayFinal = [2]; // final array
+			var arrArrayEntries = document.getElementById('txtInitialArray').value.split(',');  // array of entries
+			var intTargetSum = document.getElementById('txtTargetSum').value; // target sum			
+			var tempSum;
+			var i = 0;
+			var j = 1;
+			
+				while (i < arrArrayEntries.length) {
+					while (j < arrArrayEntries.length) {
+						tempSum = parseInt(arrArrayEntries[i]) + parseInt(arrArrayEntries[j]);
+						if (tempSum == intTargetSum) {
+							arrArrayFinal[0] = arrArrayEntries[i];
+							arrArrayFinal[1] = arrArrayEntries[j];
+							document.getElementById('txtCommentsErrors').value = "Final result is " + arrArrayFinal;							
+							break;
+						};
+						j++;
+					}
+					j=0;
+					i++;
+				}
+				
+			} 
+			catch(err) {
+				document.getElementById('txtCommentsErrors').value = err.message;
+			}
+		}
+		
+		</script>
+	</head>
+	<body>
+		<p>Please enter your initial array: <input type="text" id="txtInitialArray" /></p>
+		<p>And your target sum (this is an int): <input type="text" id="txtTargetSum" /></p>
+		<p><input type="button" value="Calculate" onclick="javascript:funCalculateChallenge();"></p>
+		<p>Results / Comments: <input id="txtCommentsErrors"></input></p>
+	</body>
+</html>
